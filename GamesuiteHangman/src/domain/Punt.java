@@ -1,7 +1,5 @@
 package domain;
 
-import org.hamcrest.core.IsInstanceOf;
-
 public class Punt {
 	private int x, y;
 	
