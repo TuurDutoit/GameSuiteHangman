@@ -16,6 +16,7 @@ public class Punt {
 		return this.y;
 	}
 	
+	@Override
 	public boolean equals(Object o){
 		boolean res = false;
 		
@@ -29,6 +30,7 @@ public class Punt {
 		return res;
 	}
 	
+	@Override
 	public String toString(){
 		return "(" + this.x + ", " + this.y + ")";
 	}
