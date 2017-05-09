@@ -7,6 +7,7 @@ public class Rechthoek extends Vorm {
 	
 	public Rechthoek(Punt linkerbovenhoek, int breedte, int hoogte) throws DomainException
 	{
+		super();
 		setBreedte(breedte);
 		setHoogte(hoogte);
 		setLinkerBovenhoek(linkerbovenhoek);

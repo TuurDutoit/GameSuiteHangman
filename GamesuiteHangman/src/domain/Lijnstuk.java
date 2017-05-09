@@ -7,6 +7,7 @@ public class LijnStuk extends Vorm {
 	
 	
 	public LijnStuk(Punt startPunt, Punt eindPunt){
+		super();
 	this.setStartPunt(startPunt);
 	this.setEindPunt(eindPunt);
 	

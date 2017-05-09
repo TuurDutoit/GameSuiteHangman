@@ -5,6 +5,7 @@ public class Cirkel extends Vorm {
 	private Punt middelpunt;
 	
 	public Cirkel(Punt middelpunt, int radius) {
+		super();
 		setMiddelpunt(middelpunt);
 		setRadius(radius);
 	}

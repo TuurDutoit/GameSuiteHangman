@@ -12,7 +12,7 @@ public class Tekening {
 	
 	public Tekening(String naam) {
 		if(naam == null || naam.trim().isEmpty()) {
-			throw new DomainException("Naam mag niet leeg zijn");
+			throw new IllegalArgumentException("Naam mag niet leeg zijn");
 		}
 		
 		this.naam = naam;
