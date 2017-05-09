@@ -21,5 +21,7 @@ public abstract class Vorm  {
 		}
 		return false;
 	}
+	
+	public abstract Omhullende getOmhullende();
 
 }
