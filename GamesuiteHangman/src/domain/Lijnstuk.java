@@ -32,12 +32,19 @@ public class LijnStuk extends Vorm{
 		return eindPunt;
 	}
 
-
 	private void setEindPunt(Punt eindPunt) {
 		if(eindPunt == null){
 			throw new DomainException("Eindpunt mag niet null zijn");
 		}
 		this.eindPunt = eindPunt;
+	}
+	
+	public Omhullende getOmhullende(){
+		Punt linksBoven = new Punt(Math.min(startPunt.getX(), eindPunt.getX()), Math.max(startPunt.getY(), eindPunt.getY()));
+		int breedte = Math.max(startPunt.getX(), eindPunt.getX()) - Math.min(startPunt.getX(), eindPunt.getX());
+		int hoogte = Math.max(startPunt.getY(), eindPunt.getY()) - Math.min(startPunt.getY(), eindPunt.getY());
+		
+		return new Omhullende(linksBoven, breedte, hoogte);
 	}
 	
 	@Override
