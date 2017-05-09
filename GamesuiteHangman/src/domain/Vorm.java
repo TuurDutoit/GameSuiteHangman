@@ -2,25 +2,24 @@ package domain;
 
 import java.awt.Graphics;
 
-import ui.Drawable;
 
-public abstract class Vorm implements Drawable {
+public abstract class Vorm  {
 
-    private boolean zichtbaar = true;
-
+   
   
 
 	@Override
 	public abstract String toString();
 
 
-
-    public void setZichtbaar(boolean zichtbaar) {
-        this.zichtbaar = zichtbaar;
-    }
-
-    public boolean isZichtbaar() {
-        return zichtbaar;
-    }
+	@Override
+	public boolean equals(Object o){
+		if(o!=null){
+			if(o instanceof Vorm){
+				return true;
+			}
+		}
+		return false;
+	}
 
 }
