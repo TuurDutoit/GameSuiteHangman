@@ -1,12 +1,13 @@
 package domain;
 
-public class LijnStuk {
+public class LijnStuk extends Vorm{
 		
 	private Punt startPunt;
 	private Punt eindPunt;
 	
 	
 	public LijnStuk(Punt startPunt, Punt eindPunt){
+		super();
 	this.setStartPunt(startPunt);
 	this.setEindPunt(eindPunt);
 	

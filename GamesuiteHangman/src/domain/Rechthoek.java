@@ -1,12 +1,13 @@
 package domain;
 
-public class Rechthoek {
+public class Rechthoek extends Vorm {
 	private Punt linkerBovenhoek;
 	private int breedte;
 	private int hoogte;
 	
 	public Rechthoek(Punt linkerbovenhoek, int breedte, int hoogte) throws DomainException
 	{
+		super();
 		setBreedte(breedte);
 		setHoogte(hoogte);
 		setLinkerBovenhoek(linkerbovenhoek);
