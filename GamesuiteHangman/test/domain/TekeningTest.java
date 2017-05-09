@@ -16,6 +16,7 @@ public class TekeningTest {
 	private Vorm raambalk1;
 	private Vorm raambalk2;
 	private Vorm schouwNietInTekening;
+	private Tekening tekening;
 	
 	@Before
 	public void setUp() {
@@ -27,6 +28,7 @@ public class TekeningTest {
 		raambalk1 = new LijnStuk(new Punt(210, 250), new Punt(290, 250));
 		raambalk2 = new LijnStuk(new Punt(250, 220), new Punt(250, 280));
 		schouwNietInTekening = new Rechthoek(new Punt(150, 150), 20,40);
+		tekening = new Tekening("test");
 	}
 
 	@Test
@@ -99,6 +101,39 @@ public class TekeningTest {
 		Tekening huisMetSchouw = createHuisMetSchouw();
 		huisMetSchouw.verwijder(schouwNietInTekening);
 		assertTrue(huis.equals(huisMetSchouw));
+	}
+	
+	@Test
+	public void voegToe_voegt_een_vorm_toe() {
+		tekening.voegToe(gebouw);
+		
+		assertTrue(tekening.bevat(gebouw));
+	}
+	
+	@Test(expected = DomainException.class)
+	public void voegToe_aanvaardt_null_niet() {
+		tekening.voegToe(null);
+	}
+	
+	@Test(expected = DomainException.class)
+	public void voegToe_verwerpt_vormen_die_al_toegevoegd_zijn() {
+		tekening.voegToe(gebouw);
+		tekening.voegToe(gebouw);
+	}
+	
+	@Test
+	public void getVorm_returnt_de_vorm() {
+		tekening.voegToe(gebouw);
+		
+		assertEquals(gebouw, tekening.getVorm(0));
+	}
+	
+	@Test
+	public void verwijder_verwijdert_de_vorm() {
+		tekening.voegToe(gebouw);
+		tekening.verwijder(gebouw);
+		
+		assertFalse(tekening.bevat(gebouw));
 	}
 
 
