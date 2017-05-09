@@ -138,7 +138,26 @@ public class TekeningTest {
 	@Test(expected = DomainException.class)
 	public void Tekening_gooit_exception_als_minX_van_omhullende_kleiner_is_als_minX_van_tekening()
 	{
-		
+		Rechthoek of = new Rechthoek(new Punt(100, 200),0, 180);
+		tekening.voegToe(of);
+	}
+	@Test(expected = DomainException.class)
+	public void Tekening_gooit_exception_als_minY_van_omhullende_kleiner_is_als_minY_van_tekening()
+	{
+		Rechthoek of = new Rechthoek(new Punt(100, 200),100, 0);
+		tekening.voegToe(of);
+	}
+	@Test(expected = DomainException.class)
+	public void Tekening_gooit_exception_als_maxX_van_omhullende_kleiner_is_als_maxX_van_tekening()
+	{
+		Rechthoek of = new Rechthoek(new Punt(100, 200),400, 180);
+		tekening.voegToe(of);
+	}
+	@Test(expected = DomainException.class)
+	public void Tekening_gooit_exception_als_maxY_van_omhullende_kleiner_is_als_maxY_van_tekening()
+	{
+		Rechthoek of = new Rechthoek(new Punt(100, 200),100, 400);
+		tekening.voegToe(of);
 	}
 
 
