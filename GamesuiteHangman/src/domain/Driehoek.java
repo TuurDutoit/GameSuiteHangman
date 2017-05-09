@@ -1,8 +1,6 @@
 package domain;
 
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 
 public class Driehoek extends Vorm {
 
@@ -53,17 +51,8 @@ public class Driehoek extends Vorm {
 		return "Driehoek: " + hoekpunt1 + " - " + hoekpunt2 + " - " + hoekpunt3;
 	}
 
-	@Override
-	public Omhullende getOmhullende() {
-		return Omhullende.vanPunten(hoekpunt1, hoekpunt2, hoekpunt3);
-	}
+	
 
-	@Override
-	public void draw(Graphics paramGraphics) {
-		Graphics2D g2 = (Graphics2D)paramGraphics;
-		int [] x = {hoekpunt1.getX(),hoekpunt2.getX(),hoekpunt3.getX()};
-		int [] y = {hoekpunt1.getY(),hoekpunt2.getY(),hoekpunt3.getY()};
-		g2.drawPolygon(x, y, 3);
-	}
+
 }
 
