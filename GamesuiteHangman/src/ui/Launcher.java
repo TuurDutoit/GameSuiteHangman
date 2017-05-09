@@ -3,11 +3,16 @@ package ui;
 import javax.swing.JOptionPane;
 
 import domain.Cirkel;
+import domain.Driehoek;
+import domain.LijnStuk;
 import domain.Punt;
 import domain.Rechthoek;
 import domain.Speler;
+import domain.Tekening;
 
 public class Launcher {
+	private static final String[] actions = {"Vorm maken", "Tekening tonen", "Stoppen"};
+	private static final String[] shapes = {"Cirkel", "Rechthoek","LijnStuk", "Driehoek"};
 
 	public static void main(String[] args) {
 		try {
@@ -17,51 +22,81 @@ public class Launcher {
 			
 			JOptionPane.showMessageDialog(null, "... heeft als score: "+speler.getScore(), speler.getNaam(), JOptionPane.INFORMATION_MESSAGE);
 			
-			// Punt
-			int x = Integer.parseInt(JOptionPane.showInputDialog("x coordinaat van het punt:"));
-			int y = Integer.parseInt(JOptionPane.showInputDialog("y coordinaat van het punt:"));
-			Punt punt = new Punt(x, y);
+			// Tekening
+			String tekeningNaam = JOptionPane.showInputDialog("Geef de naam van je tekening:");
+			Tekening tekening = new Tekening(tekeningNaam);
 			
-			JOptionPane.showMessageDialog(null, "U heeft een correct punt aangemaakt: " + punt.toString() ,speler.getNaam(), JOptionPane.INFORMATION_MESSAGE);
+			boolean keepGoing = true;
 			
-			// Keuze
-			Object[] shapes = {"Cirkel", "Rechthoek","LijnStuk", "Driehoek"};
-			Object keuze = JOptionPane.showInputDialog(null, "Wat wilt u tekenen", "input", JOptionPane.INFORMATION_MESSAGE, null, shapes, null);
-			
-			if(keuze == "Rechthoek") {
-				int breedte = Integer.parseInt(JOptionPane.showInputDialog("Breedte van de Rechtoek"));
-				int hoogte = Integer.parseInt(JOptionPane.showInputDialog("Hoogte van de Rechthoek"));
-				Rechthoek rechthoek = new Rechthoek(punt, breedte, hoogte);
-				JOptionPane.showMessageDialog(null, "U heeft een correcte rechthoek aangemaakt: " + rechthoek.toString(), speler.getNaam(), JOptionPane.INFORMATION_MESSAGE);
-			}
-			else if(keuze == "Cirkel") {
-				int r = Integer.parseInt(JOptionPane.showInputDialog("Radius van de cirkel:"));
-				Cirkel cirkel = new Cirkel(punt, r);
-				JOptionPane.showMessageDialog(null, "U heeft een correcte cirkel aangemaakt: " + cirkel.toString(), speler.getNaam(), JOptionPane.INFORMATION_MESSAGE);
-			}
-			else if(keuze == "LijnStuk") {	
-				int eindex = Integer.parseInt(JOptionPane.showInputDialog("x coordinaat van het eind punt:"));
-				int eindey = Integer.parseInt(JOptionPane.showInputDialog("y coordinaat van het eind punt:"));
-				Punt einde = new Punt(eindex, eindey);
-				JOptionPane.showMessageDialog(null, "U heeft een correcte lijn aangemaakt: " + punt.toString() +einde.toString(),speler.getNaam(), JOptionPane.INFORMATION_MESSAGE);
-	
+			while(keepGoing) {
+				String keuze = (String) JOptionPane.showInputDialog(null, "Wat wil je doen?", "Input", JOptionPane.INFORMATION_MESSAGE, null, actions, null);
 				
-				
-			}
-			else if(keuze == "Driehoek") {
-				int x1 = Integer.parseInt(JOptionPane.showInputDialog("x coordinaat van het punt 1:"));
-				int y1 = Integer.parseInt(JOptionPane.showInputDialog("y coordinaat van het punt 1:"));		
-				int x2 = Integer.parseInt(JOptionPane.showInputDialog("x coordinaat van het punt 2:"));
-				int y2 = Integer.parseInt(JOptionPane.showInputDialog("y coordinaat van het punt 2:"));	
-				Punt punt1 = new Punt(x1,y1);
-				Punt punt2 = new Punt(x2,y2);
-				JOptionPane.showMessageDialog(null, "U heeft een correcte driehoek aangemaakt: " + punt.toString()+ punt1.toString() +punt2.toString() ,speler.getNaam(), JOptionPane.INFORMATION_MESSAGE);
-	
+				switch(keuze) {
+					case "Vorm maken":
+						vormMaken(speler, tekening);
+						break;
+					case "Tekening tonen":
+						toonTekening(speler, tekening);
+						break;
+					default:
+						keepGoing = false;
+						break;
+				}
 			}
 		}
 		catch(Exception exc) {
 			JOptionPane.showMessageDialog(null,  "Er is een fout opgetreden: " + exc.getMessage(), "Fout", JOptionPane.ERROR_MESSAGE);
 		}
+	}
+	
+	private static void vormMaken(Speler speler, Tekening tekening) {
+		// Punt
+		int x = Integer.parseInt(JOptionPane.showInputDialog("x coordinaat van het punt:"));
+		int y = Integer.parseInt(JOptionPane.showInputDialog("y coordinaat van het punt:"));
+		Punt punt = new Punt(x, y);
+		
+		JOptionPane.showMessageDialog(null, "U heeft een correct punt aangemaakt: " + punt.toString() ,speler.getNaam(), JOptionPane.INFORMATION_MESSAGE);
+		
+		// Keuze
+		String keuze = (String) JOptionPane.showInputDialog(null, "Wat wilt u tekenen", "input", JOptionPane.INFORMATION_MESSAGE, null, shapes, null);
+		
+		if(keuze == "Rechthoek") {
+			int breedte = Integer.parseInt(JOptionPane.showInputDialog("Breedte van de Rechtoek"));
+			int hoogte = Integer.parseInt(JOptionPane.showInputDialog("Hoogte van de Rechthoek"));
+			Rechthoek rechthoek = new Rechthoek(punt, breedte, hoogte);
+			tekening.voegToe(rechthoek);
+			JOptionPane.showMessageDialog(null, "U heeft een correcte rechthoek aangemaakt: " + rechthoek.toString(), speler.getNaam(), JOptionPane.INFORMATION_MESSAGE);
+		}
+		else if(keuze == "Cirkel") {
+			int r = Integer.parseInt(JOptionPane.showInputDialog("Radius van de cirkel:"));
+			Cirkel cirkel = new Cirkel(punt, r);
+			tekening.voegToe(cirkel);
+			JOptionPane.showMessageDialog(null, "U heeft een correcte cirkel aangemaakt: " + cirkel.toString(), speler.getNaam(), JOptionPane.INFORMATION_MESSAGE);
+		}
+		else if(keuze == "LijnStuk") {	
+			int eindex = Integer.parseInt(JOptionPane.showInputDialog("x coordinaat van het eind punt:"));
+			int eindey = Integer.parseInt(JOptionPane.showInputDialog("y coordinaat van het eind punt:"));
+			Punt einde = new Punt(eindex, eindey);
+			LijnStuk lijn = new LijnStuk(punt, einde);
+			tekening.voegToe(lijn);
+			JOptionPane.showMessageDialog(null, "U heeft een correcte lijn aangemaakt: " + lijn.toString(), speler.getNaam(), JOptionPane.INFORMATION_MESSAGE);
+		}
+		else if(keuze == "Driehoek") {
+			int x1 = Integer.parseInt(JOptionPane.showInputDialog("x coordinaat van het punt 1:"));
+			int y1 = Integer.parseInt(JOptionPane.showInputDialog("y coordinaat van het punt 1:"));		
+			int x2 = Integer.parseInt(JOptionPane.showInputDialog("x coordinaat van het punt 2:"));
+			int y2 = Integer.parseInt(JOptionPane.showInputDialog("y coordinaat van het punt 2:"));	
+			Punt punt1 = new Punt(x1,y1);
+			Punt punt2 = new Punt(x2,y2);
+			Driehoek driehoek = new Driehoek(punt, punt1, punt2);
+			tekening.voegToe(driehoek);
+			JOptionPane.showMessageDialog(null, "U heeft een correcte driehoek aangemaakt: " + driehoek.toString(), speler.getNaam(), JOptionPane.INFORMATION_MESSAGE);
+
+		}
+	}
+	
+	private static void toonTekening(Speler speler, Tekening tekening) {
+		System.out.println(tekening.toString());
 	}
 	
 }
