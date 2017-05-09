@@ -30,6 +30,10 @@ public class Tekening {
 		if(bevat(vorm)) {
 			throw new DomainException("Tekening bevat vorm al");
 		}
+		if(vorm.getOmhullende().getMinimumX()<MIN_X || vorm.getOmhullende().getMaximumX()>MAX_X || vorm.getOmhullende().getMinimumY()<MIN_Y||vorm.getOmhullende().getMaximumY()>MAX_Y)
+		{
+			throw new IllegalArgumentException("Vorm past niet op de tekening!");
+		}
 		
 		vormen.add(vorm);
 	}
