@@ -82,4 +82,10 @@ public class RechthoekTest {
 	public void equals_moet_false_teruggeven_als_parameter_null(){
 		assertFalse(rechthoek.equals(null));
 	}
+	
+	@Test
+	public void test_getOmhullende(){
+		Omhullende omhullende = new Omhullende(linkerBovenhoek, breedte, hoogte);
+		assertEquals(omhullende, rechthoek.getOmhullende());
+	}
 }

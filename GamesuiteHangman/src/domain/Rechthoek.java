@@ -50,6 +50,10 @@ public class Rechthoek {
 		}
 		this.hoogte = hoogte;
 	}
+	
+	public Omhullende getOmhullende(){
+		return new Omhullende(linkerBovenhoek, breedte, hoogte);
+	}
 	@Override
 	public boolean equals(Object object){
 		boolean resultaat = false;
