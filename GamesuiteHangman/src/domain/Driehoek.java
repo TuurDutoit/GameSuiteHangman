@@ -35,8 +35,8 @@ public class Driehoek extends Vorm {
 		
 		int yKlein = Math.min(Math.min(hoekpunt1.getY(), hoekpunt2.getY()), Math.min(hoekpunt2.getY(), hoekpunt3.getY()));
 		int yGroot = Math.max(Math.max(hoekpunt1.getY(), hoekpunt2.getY()), Math.max(hoekpunt2.getY(), hoekpunt3.getY()));
-		int xKlein = Math.min(Math.min(hoekpunt1.getX(), hoekpunt2.getX()), Math.min(hoekpunt2.getX(), hoekpunt3.getY()));
-		int xGroot = Math.max(Math.max(hoekpunt1.getX(), hoekpunt2.getX()), Math.max(hoekpunt2.getX(), hoekpunt3.getY()));
+		int xKlein = Math.min(Math.min(hoekpunt1.getX(), hoekpunt2.getX()), Math.min(hoekpunt2.getX(), hoekpunt3.getX()));
+		int xGroot = Math.max(Math.max(hoekpunt1.getX(), hoekpunt2.getX()), Math.max(hoekpunt2.getX(), hoekpunt3.getX()));
 		Punt linksBoven = new Punt(xKlein,yGroot);
 		 
 		int breedte = xGroot - xKlein;

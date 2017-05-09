@@ -42,5 +42,15 @@ public class LijnStukTest {
 		LijnStuk lijnStuk = new LijnStuk(punt1, punt2);
 		assertFalse(lijnStuk.equals(null));
 	}
+	
+	@Test
+	public void test_getOmhullende(){
+		LijnStuk lijnStuk = new LijnStuk(punt1, punt2);
+		Punt linksBoven = new Punt(10, 30);
+		int breedte = 180;
+		int hoogte = 10;
+		Omhullende omhullende = new Omhullende(linksBoven, breedte, hoogte);
+		assertEquals(omhullende, lijnStuk.getOmhullende());
+	}
 }
 	
