@@ -47,7 +47,7 @@ public class CirkelTest {
 	
 	@Test
 	public void test_equals_null() {
-		assertTrue(cirkel.equals(null));
+		assertFalse(cirkel.equals(null));
 	}
 	
 	@Test
@@ -61,6 +61,11 @@ public class CirkelTest {
 	public void test_equals_verschillende_straal() {
 		Cirkel c = new Cirkel(punt, 10);
 		assertFalse(cirkel.equals(c));
+	}
+	
+	@Test
+	public void test_toString() {
+		assertEquals("Cirkel: middelpunt: (5, 5) - straal: 5", cirkel.toString());
 	}
 
 }
