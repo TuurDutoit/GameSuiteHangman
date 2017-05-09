@@ -135,6 +135,11 @@ public class TekeningTest {
 		
 		assertFalse(tekening.bevat(gebouw));
 	}
+	@Test(expected = DomainException.class)
+	public void Tekening_gooit_exception_als_minX_van_omhullende_kleiner_is_als_minX_van_tekening()
+	{
+		
+	}
 
 
 	public Tekening createHuisMetSchouw() {
@@ -173,5 +178,6 @@ public class TekeningTest {
 		huisMetSchouwZonderDeur.voegToe(schouwNietInTekening);
 		return huisMetSchouwZonderDeur;
 	}
+	
 
 }
