@@ -20,14 +20,13 @@ public class PuntTest {
 
 	@Test
 	public void Punt_moet_een_punt_maken_met_de_gegeven_coordinaten() {
-		punt = new Punt(xCoordinaat, yCoordinaat);
 		assertEquals(xCoordinaat, punt.getX());
 		assertEquals(yCoordinaat, punt.getY());
 	}
 	
 	public void equals_moet_true_teruggeven_als_x_en_y_coordinaat_gelijk_zijn(){
-		Punt puntAnder = new Punt(xCoordinaat, yCoordinaat);
-		assertTrue(punt.equals(puntAnder));
+		Punt zelfdePunt = new Punt(xCoordinaat, yCoordinaat);
+		assertTrue(punt.equals(zelfdePunt));
 	}
 	
 	@Test

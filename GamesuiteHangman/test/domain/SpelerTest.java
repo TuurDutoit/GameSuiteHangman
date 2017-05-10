@@ -24,7 +24,6 @@ public class SpelerTest {
 
 	@Test
 	public void Speler_moet_speler_aanmaken_met_gegeven_naam() {
-		speler = new Speler(naam);
 		assertEquals(naam, speler.getNaam());
 		assertEquals(0, speler.getScore());
 	}
@@ -42,10 +41,10 @@ public class SpelerTest {
 	@Test
 	public void equals_moet_true_teruggeven_als_naam_en_score_gelijk_zijn(){
 		speler.addToScore(positiveScore);
-		Speler andereSpeler = new Speler(naam);
-		andereSpeler.addToScore(positiveScore);
+		Speler zelfdeSpeler = new Speler(naam);
+		zelfdeSpeler.addToScore(positiveScore);
 		
-		assertTrue(speler.equals(andereSpeler));
+		assertTrue(speler.equals(zelfdeSpeler));
 	}
 	
 	@Test

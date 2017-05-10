@@ -2,6 +2,7 @@ package domain;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class DriehoekTest {
@@ -14,11 +15,15 @@ public class DriehoekTest {
 	private Punt punt3 = new Punt(190, 30);
 	private Punt zelfdeAlsPunt3 = new Punt(190, 30);
 	private Punt verschillendVanPunt3 = new Punt(120, 100);
-
+	private Driehoek drieHoek;
+	
+	@Before
+	public void setUp(){
+		drieHoek = new Driehoek(punt1, punt2, punt3);
+	}
+	
 	@Test
 	public void Driehoek_moet_DrieHoek_aanmaken_met_gegeven_hoekpunten() {
-		Driehoek drieHoek = new Driehoek(punt1, punt2, punt3);
-
 		assertEquals(punt1, drieHoek.getHoekPunt1());
 		assertEquals(punt2, drieHoek.getHoekPunt2());
 		assertEquals(punt3, drieHoek.getHoekPunt3());
@@ -41,34 +46,29 @@ public class DriehoekTest {
 	
 	@Test
 	public void equals_moet_false_teruggeven_als_hoekPunt1_verschillend(){
-		Driehoek drieHoek = new Driehoek(punt1, punt2, punt3);
 		Driehoek andereDriehoek = new Driehoek(verschillendVanPunt1, zelfdeAlsPunt2, zelfdeAlsPunt3);
 		assertFalse(drieHoek.equals(andereDriehoek));
 	}
 	
 	@Test
 	public void equals_moet_false_teruggeven_als_hoekPunt2_verschillend(){
-		Driehoek drieHoek = new Driehoek(punt1, punt2, punt3);
 		Driehoek andereDriehoek = new Driehoek(zelfdeAlsPunt1, verschillendVanPunt2, zelfdeAlsPunt3);
 		assertFalse(drieHoek.equals(andereDriehoek));
 	}
 	
 	@Test
 	public void equals_moet_false_teruggeven_als_hoekPunt3_verschillend(){
-		Driehoek drieHoek = new Driehoek(punt1, punt2, punt3);
 		Driehoek andereDriehoek = new Driehoek(zelfdeAlsPunt1, zelfdeAlsPunt2, verschillendVanPunt3);
 		assertFalse(drieHoek.equals(andereDriehoek));
 	}
 	
 	@Test
 	public void equals_moet_false_teruggeven_als_parameter_null(){
-		Driehoek drieHoek = new Driehoek(punt1, punt2, punt3);
 		assertFalse(drieHoek.equals(null));
 	}
 	
 	@Test
 	public void test_getOmhullende(){
-		Driehoek drieHoek = new Driehoek(punt1, punt2, punt3);
 		Punt linksBoven = new Punt(10, 40);
 		int breedte = 180;
 		int hoogte = 20;

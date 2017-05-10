@@ -44,14 +44,14 @@ public class OmhullendeTest {
 
 	@Test
 	public void Omhullende_Moet_omhullende_maken_als_breedte_gelijk_aan_0()  {
-		Omhullende omhullende = new Omhullende(linkerBovenhoek,0, hoogte);
-		assertEquals(0, omhullende.getBreedte());
+		Omhullende andereOmhullende = new Omhullende(linkerBovenhoek,0, hoogte);
+		assertEquals(0, andereOmhullende.getBreedte());
 	}
 	
 	@Test
 	public void Omhullende_Moet_omhullende_maken_als_hoogte_gelijk_aan_0()  {
-		Omhullende omhullende = new Omhullende(linkerBovenhoek,breedte, 0);
-		assertEquals(0, omhullende.getHoogte());
+		Omhullende andereOmhullende = new Omhullende(linkerBovenhoek,breedte, 0);
+		assertEquals(0, andereOmhullende.getHoogte());
 	}
 	
 	@Test

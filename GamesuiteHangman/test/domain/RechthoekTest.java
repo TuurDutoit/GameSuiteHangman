@@ -21,7 +21,6 @@ public class RechthoekTest {
 
 	@Test
 	public void Rechthoek_moet_rechthoek_aanmaken_met_gegeven_linkerbovenhoek_breedte_en_hoogte() {
-		Rechthoek rechthoek = new Rechthoek(linkerBovenhoek,breedte, hoogte);
 		assertEquals(linkerBovenhoek, rechthoek.getLinkerBovenhoek());
 		assertEquals(hoogte, rechthoek.getHoogte());
 		assertEquals(breedte, rechthoek.getBreedte());

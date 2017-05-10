@@ -16,9 +16,7 @@ public class CirkelTest {
 	}
 	
 	@Test
-	public void test_geldig() {
-		Cirkel cirkel = new Cirkel(punt, radius);
-		
+	public void test_geldig() {		
 		assertEquals(punt, cirkel.getMiddelpunt());
 		assertEquals(radius, cirkel.getRadius());
 	}
