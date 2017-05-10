@@ -42,7 +42,7 @@ public class PictionaryUi {
 						break;
 						
 					case "Tekening tonen":
-						JOptionPane.showMessageDialog(null, tekening.toString());
+						toonTekening();
 						break;
 						
 					case "Stoppen":
@@ -57,6 +57,12 @@ public class PictionaryUi {
 		catch(Exception e) {
 			JOptionPane.showMessageDialog(null, "Er is een fout opgetreden: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
+	}
+	
+	public void toonTekening() {
+		GameHoofdScherm view = new GameHoofdScherm(speler.getNaam(), tekening);
+		view.setVisible(true);
+		view.teken();
 	}
 	
 	public void maakVorm() {

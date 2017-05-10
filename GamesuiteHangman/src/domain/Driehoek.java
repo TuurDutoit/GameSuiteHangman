@@ -1,6 +1,8 @@
 package domain;
 
-public class Driehoek extends Vorm {
+import java.awt.Graphics;
+
+public class Driehoek extends Vorm implements Drawable {
 
 	private Punt hoekpunt1, hoekpunt2, hoekpunt3;
 
@@ -46,6 +48,12 @@ public class Driehoek extends Vorm {
 		int hoogte = yGroot - yKlein;
 		
 		return new Omhullende(linksBoven, breedte, hoogte);
+	}
+	
+	public void teken(Graphics g) {
+		int[] xPoints = { getHoekPunt1().getX(), getHoekPunt2().getX(), getHoekPunt3().getX() };
+		int[] yPoints = { getHoekPunt1().getY(), getHoekPunt2().getY(), getHoekPunt3().getY() };
+		g.drawPolygon(xPoints, yPoints, 3);
 	}
 
 	@Override
