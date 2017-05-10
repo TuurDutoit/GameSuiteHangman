@@ -6,10 +6,11 @@ public class Speler {
 	
 	public Speler(String naam) {
 		if(naam == null || naam.trim().isEmpty()) {
-			throw new DomainException("Name cannot be empty");
+			throw new DomainException("Naam mag niet leeg zijn");
 		}
 		
 		this.naam = naam;
+		this.score = 0;
 	}
 	
 	public String getNaam() {
@@ -22,7 +23,7 @@ public class Speler {
 	
 	public void addToScore(int diff) {
 		if(score + diff < 0) {
-			throw new DomainException("New score cannot be negative");
+			throw new DomainException("Nieuwe score moet positief zijn");
 		}
 		
 		score += diff;

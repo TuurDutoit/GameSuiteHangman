@@ -7,7 +7,6 @@ public class Omhullende {
 	private Punt linkerBovenhoek;
 	
 	public Omhullende(Punt linksBoven, int breedte, int hoogte){
-		
 		if(breedte < 0){
 			throw new DomainException("breedte mag niet negatief zijn!");
 		}
@@ -17,6 +16,7 @@ public class Omhullende {
 		if(linksBoven == null){
 			throw new DomainException("geen geldige linkerbovenhoek");
 		}
+		
 		this.breedte = breedte;
 		this.hoogte = hoogte;
 		this.linkerBovenhoek = linksBoven;

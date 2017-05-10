@@ -12,7 +12,7 @@ public class Cirkel extends Vorm {
 	
 	public void setMiddelpunt(Punt middelpunt) {
 		if(middelpunt == null) {
-			throw new DomainException("Center cannot be null");
+			throw new DomainException("Middelpunt mag niet null zijn");
 		}
 		
 		this.middelpunt = middelpunt;
@@ -24,7 +24,7 @@ public class Cirkel extends Vorm {
 	
 	public void setRadius(int radius) {
 		if(radius <= 0) {
-			throw new DomainException("Radius must be bigger than 0");
+			throw new DomainException("Straal moet strict positief zijn");
 		}
 		
 		this.radius = radius;
@@ -36,7 +36,7 @@ public class Cirkel extends Vorm {
 	
 	public Omhullende getOmhullende(){
 		int x = middelpunt.getX() - radius;
-		int y = middelpunt.getY() + radius;
+		int y = middelpunt.getY() - radius;
 		
 		Punt linksBoven = new Punt(x, y);
 		

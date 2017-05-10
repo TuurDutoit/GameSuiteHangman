@@ -30,12 +30,18 @@ public class Tekening {
 		if(bevat(vorm)) {
 			throw new DomainException("Tekening bevat vorm al");
 		}
-		if(vorm.getOmhullende().getMinimumX()<MIN_X || vorm.getOmhullende().getMaximumX()>MAX_X || vorm.getOmhullende().getMinimumY()<MIN_Y||vorm.getOmhullende().getMaximumY()>MAX_Y)
-		{
-			throw new DomainException("Vorm past niet op de tekening!");
+		if(!vormPast(vorm)) {
+			throw new DomainException("Vorm past niet op tekening");
 		}
 		
 		vormen.add(vorm);
+	}
+	
+	public boolean vormPast(Vorm vorm) {
+		return vorm.getOmhullende().getMinimumX() <= MIN_X
+			&& vorm.getOmhullende().getMaximumX() >= MAX_X
+			&& vorm.getOmhullende().getMinimumY() <= MIN_Y
+			&& vorm.getOmhullende().getMaximumY() >= MAX_Y;
 	}
 	
 	public Vorm getVorm(int index) {

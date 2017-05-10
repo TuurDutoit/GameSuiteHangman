@@ -8,33 +8,30 @@ public class LijnStuk extends Vorm {
 	
 	public LijnStuk(Punt startPunt, Punt eindPunt){
 		super();
-		this.setStartPunt(startPunt);
-		this.setEindPunt(eindPunt);
+		this.setStartEnEindPunt(startPunt, eindPunt);
 	}
-
 
 	public Punt getStartPunt() {
 		return startPunt;
 	}
 
-
-	private void setStartPunt(Punt startPunt) {
-		if(startPunt == null){
-			throw new DomainException("Startpunt mag niet null zijn");
-		}
-		this.startPunt = startPunt;
-	}
-
-
 	public Punt getEindPunt() {
 		return eindPunt;
 	}
-
-	private void setEindPunt(Punt eindPunt) {
-		if(eindPunt == null){
+	
+	public void setStartEnEindPunt(Punt start, Punt eind) {
+		if(start == null) {
+			throw new DomainException("Startpunt mag niet null zijn");
+		}
+		if(eind == null) {
 			throw new DomainException("Eindpunt mag niet null zijn");
 		}
-		this.eindPunt = eindPunt;
+		if(start.equals(eind)) {
+			throw new DomainException("Start- en eindpunt mogen niet gelijk zijn");
+		}
+		
+		startPunt = start;
+		eindPunt = eind;
 	}
 	
 	public Omhullende getOmhullende(){
@@ -46,19 +43,19 @@ public class LijnStuk extends Vorm {
 	}
 	
 	@Override
-	public boolean equals(Object o){
-		if(o != null){
-			if(o instanceof LijnStuk){
-				LijnStuk l = (LijnStuk) o;
-				return this.getStartPunt().equals(l.getStartPunt()) && this.getEindPunt().equals(l.getEindPunt());
-			}
+	public boolean equals(Object o) {
+		if(o instanceof LijnStuk) {
+			LijnStuk l = (LijnStuk) o;
+			return (this.getStartPunt().equals(l.getStartPunt()) && this.getEindPunt().equals(l.getEindPunt())) ||
+				   (this.getStartPunt().equals(l.getEindPunt()) && this.getEindPunt().equals(l.getStartPunt()));
 		}
+		
 		return false;
 	}
 	
 	@Override
 	public String toString(){
-		return "Lijn: startpunt: " + this.getStartPunt().toString() + " - eindpunt:" + this.getEindPunt().toString();
+		return "Lijn: startpunt: " + this.getStartPunt().toString() + " - eindpunt: " + this.getEindPunt().toString();
 	}
 }
 
