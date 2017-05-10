@@ -1,6 +1,8 @@
 package domain;
 
-public class LijnStuk extends Vorm {
+import java.awt.Graphics;
+
+public class LijnStuk extends Vorm implements Drawable {
 		
 	private Punt startPunt;
 	private Punt eindPunt;
@@ -45,6 +47,10 @@ public class LijnStuk extends Vorm {
 		int hoogte = maxY - minY;
 		
 		return new Omhullende(linksBoven, breedte, hoogte);
+	}
+	
+	public void teken(Graphics g) {
+		g.drawLine(getStartPunt().getX(), getStartPunt().getY(), getEindPunt().getX(), getEindPunt().getY());
 	}
 	
 	@Override
