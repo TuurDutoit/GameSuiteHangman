@@ -62,5 +62,21 @@ public class WoordenLijstTest {
 
 		woordenlijstMetGeldigeWoorden.voegToe(woordAlInLijst);
 	}
+	
+	@Test
+	public void test_getRandomWoord(){
+		assertTrue(geldigeWoorden.contains(woordenlijstMetGeldigeWoorden.getRandomWoord()));
+	}
+	
+	@Test
+	public void test_getRandomWoord_met_lege_woordenlijst() {
+		assertEquals(null, woordenlijstLeeg.getRandomWoord());
+	}
+	
+	@Test
+	public void test_getRandomWoord_met_woordenlijst_met_1_woord() {
+		assertEquals(geldigeWoorden.get(0), woordenlijstMetEenGeldigWoord.getRandomWoord());
+	}
+
 
 }
