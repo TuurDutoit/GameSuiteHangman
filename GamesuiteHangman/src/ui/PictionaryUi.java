@@ -25,6 +25,7 @@ public class PictionaryUi {
 		this.speler = speler;
 	}
 	
+	
 	public void showMenu() {
 		try {
 			// Tekening
