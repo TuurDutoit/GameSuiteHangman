@@ -7,6 +7,8 @@ import domain.Speler;
 public class Launcher {
 	private static final String[] games = {"Pictionary", "HangMan"};
 	
+	private static final String[] spelen = {"Hangman", "Pictionary"};
+	
 	public static void main(String[] args) {
 		try {
 			String naam = JOptionPane.showInputDialog("Welkom!\nHoe heet je?");
