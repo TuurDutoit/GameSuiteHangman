@@ -69,7 +69,7 @@ public class DriehoekTest {
 
 	@Test
 	public void test_getOmhullende() {
-		Punt linksBoven = new Punt(10, 40);
+		Punt linksBoven = new Punt(10, 20);
 		int breedte = 180;
 		int hoogte = 20;
 		Omhullende omhullende = new Omhullende(linksBoven, breedte, hoogte);

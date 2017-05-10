@@ -34,10 +34,15 @@ public class LijnStuk extends Vorm {
 		eindPunt = eind;
 	}
 	
-	public Omhullende getOmhullende(){
-		Punt linksBoven = new Punt(Math.min(startPunt.getX(), eindPunt.getX()), Math.max(startPunt.getY(), eindPunt.getY()));
-		int breedte = Math.max(startPunt.getX(), eindPunt.getX()) - Math.min(startPunt.getX(), eindPunt.getX());
-		int hoogte = Math.max(startPunt.getY(), eindPunt.getY()) - Math.min(startPunt.getY(), eindPunt.getY());
+	public Omhullende getOmhullende() {
+		int minX = Math.min(startPunt.getX(), eindPunt.getX());
+		int minY = Math.min(startPunt.getY(), eindPunt.getY());
+		int maxX = Math.max(startPunt.getX(), eindPunt.getX());
+		int maxY = Math.max(startPunt.getY(), eindPunt.getY());
+		
+		Punt linksBoven = new Punt(minX, minY);
+		int breedte = maxX - minX;
+		int hoogte = maxY - minY;
 		
 		return new Omhullende(linksBoven, breedte, hoogte);
 	}

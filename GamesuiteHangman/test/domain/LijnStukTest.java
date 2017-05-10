@@ -49,7 +49,7 @@ public class LijnStukTest {
 
 	@Test
 	public void test_getOmhullende() {
-		Punt linksBoven = new Punt(10, 30);
+		Punt linksBoven = new Punt(10, 20);
 		int breedte = 180;
 		int hoogte = 10;
 		Omhullende omhullende = new Omhullende(linksBoven, breedte, hoogte);

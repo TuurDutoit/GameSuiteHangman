@@ -38,10 +38,10 @@ public class Tekening {
 	}
 	
 	public boolean vormPast(Vorm vorm) {
-		return vorm.getOmhullende().getMinimumX() <= MIN_X
-			&& vorm.getOmhullende().getMaximumX() >= MAX_X
-			&& vorm.getOmhullende().getMinimumY() <= MIN_Y
-			&& vorm.getOmhullende().getMaximumY() >= MAX_Y;
+		return vorm.getOmhullende().getMinimumX() >= MIN_X
+			&& vorm.getOmhullende().getMaximumX() <= MAX_X
+			&& vorm.getOmhullende().getMinimumY() >= MIN_Y
+			&& vorm.getOmhullende().getMaximumY() <= MAX_Y;
 	}
 	
 	public Vorm getVorm(int index) {

@@ -68,7 +68,7 @@ public class CirkelTest {
 
 	@Test
 	public void test_getOmhullende() {
-		Punt linksBoven = new Punt(0, 10);
+		Punt linksBoven = new Punt(0, 0);
 		int breedte = 10;
 		int hoogte = 10;
 		Omhullende omhullende = new Omhullende(linksBoven, breedte, hoogte);
