@@ -3,49 +3,62 @@ package domain;
 import java.util.List;
 import java.util.ArrayList;
 public class HintWoord {
-
-		private String woord;
-		private List<HintLetter> letters = new ArrayList<>();
-		
-		
-		
+		private ArrayList<HintLetter> hintLetters = new ArrayList<>();
 		
 		public HintWoord(String woord){
 			this.setWoord(woord);
 		}
 
-
-
-
 		public String getWoord() {
-			return woord;
+			String res = "";
+			
+			for(HintLetter letter : hintLetters) {
+				res += letter.getLetter();
+			}
+			
+			return res;
 		}
-
 
 		private void setWoord(String woord) {
-			if(woord == null){
+			if(woord == null || woord.trim().isEmpty()){
 				throw new DomainException("geldig woord verwacht");
 			}
-			this.woord = woord;
-		}
-
-		public List<HintLetter> getLetters() {
-			return letters;
-		}
-
-		private void setLetters(List<HintLetter> letters) {
-			this.letters = letters;
+			
+			char[] letters = woord.toCharArray();
+			
+			for(char letter : letters) {
+				hintLetters.add(new HintLetter(letter));
+			}
 		}
 		
 		public boolean isGeraden(){
-			for (HintLetter hintLetter : letters) {
+			for (HintLetter hintLetter : hintLetters) {
 				if(!hintLetter.isGeraden()) return false;
-				
-				
 			}
 			return true;
 		}
 		
-
+		public boolean raad(char letter) {
+			boolean geraden = false;
+			
+			for(HintLetter hintLetter : hintLetters) {
+				if(hintLetter.raad(letter)) {
+					geraden = true;
+				}
+			}
+			
+			return geraden;
+		}
+		
+		@Override
+		public String toString() {
+			String res = "";
+			
+			for(HintLetter letter : hintLetters) {
+				res += " " + letter.toChar();
+			}
+			
+			return res.substring(1);
+		}
 		
 }

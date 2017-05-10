@@ -20,8 +20,11 @@ public class HintLetter {
 
 
 			private void setLetter(char letter) {
-				
 				this.letter = Character.toLowerCase(letter);
+				
+				if(this.letter == ' ') {
+					geraden = true;
+				}
 			}
 			
 			
@@ -33,9 +36,9 @@ public class HintLetter {
 				if(geraden) return false;
 				if(Character.toLowerCase(letter) == this.letter){
 					geraden = true;
-					return true;
 				}
-				return false;
+				
+				return geraden;
 			}
 			
 			public char toChar(){
