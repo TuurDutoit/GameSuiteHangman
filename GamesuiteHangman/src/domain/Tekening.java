@@ -1,8 +1,9 @@
 package domain;
 
+import java.awt.Graphics;
 import java.util.ArrayList;
 
-public class Tekening {
+public class Tekening implements Drawable {
 	private static final int MIN_X = 0;
 	private static final int MIN_Y = 0;
 	private static final int MAX_X = 399;
@@ -58,6 +59,13 @@ public class Tekening {
 	
 	public boolean bevat(Vorm vorm) {
 		return vormen.contains(vorm);
+	}
+	
+	public void teken(Graphics g) {
+		for(Vorm vorm : vormen) {
+			Drawable v = (Drawable) vorm;
+			v.teken(g);
+		}
 	}
 	
 	@Override
