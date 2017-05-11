@@ -46,11 +46,13 @@ public class Cirkel extends Vorm implements Drawable {
 	}
 	
 	public void teken(Graphics g) {
-		Omhullende omhullende = getOmhullende();
-		g.drawOval(omhullende.getMinimumX(),
-				   omhullende.getMinimumY(),
-				   omhullende.getBreedte(),
-				   omhullende.getHoogte());
+		if(isZichtbaar()) {
+			Omhullende omhullende = getOmhullende();
+			g.drawOval(omhullende.getMinimumX(),
+					   omhullende.getMinimumY(),
+					   omhullende.getBreedte(),
+					   omhullende.getHoogte());
+		}
 	}
 	
 	@Override

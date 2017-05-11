@@ -20,6 +20,10 @@ public class HangManUi {
 	
 	public void play() {
 		HintWoord woord = new HintWoord("test");
+		TekeningHangMan tekening = new TekeningHangMan();
+		GameHoofdScherm view = new GameHoofdScherm(speler.getNaam(), tekening);
+		view.setVisible(true);
+		view.teken();
 		boolean juist = false;
 		char letter = 0;
 		
@@ -32,6 +36,12 @@ public class HangManUi {
 				}
 				else {
 					content += letter + " zit niet in het woord (of heb je al eens geprobeerd)...\n\n";
+					tekening.zetVolgendeZichtbaar();
+					view.teken();
+					
+					if(tekening.alleVormenZichtbaar()) {
+						break;
+					}
 				}
 			}
 			
@@ -41,7 +51,12 @@ public class HangManUi {
 			juist = woord.raad(letter);
 		}
 		
-		JOptionPane.showMessageDialog(null, "U heeft het woord geraden!\n\n>>> " + woord + " <<<", "GEWONNEN!", JOptionPane.INFORMATION_MESSAGE);
+		if(woord.isGeraden()) {
+			JOptionPane.showMessageDialog(null, "U heeft het woord geraden!\n\n>>> " + woord + " <<<", "GEWONNEN!", JOptionPane.INFORMATION_MESSAGE);
+		}
+		else {
+			JOptionPane.showMessageDialog(null,  "U heeft het woord niet geraden...\nHet woord was:\n\n" + woord.getWoord(), "VERLOREN", JOptionPane.INFORMATION_MESSAGE);
+		}
 	}
 	
 }

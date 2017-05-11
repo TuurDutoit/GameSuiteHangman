@@ -56,7 +56,9 @@ public class Rechthoek extends Vorm implements Drawable {
 	}
 	
 	public void teken(Graphics g) {
-		g.drawRect(getLinkerBovenhoek().getX(), getLinkerBovenhoek().getY(), breedte, hoogte);
+		if(isZichtbaar()) {
+			g.drawRect(getLinkerBovenhoek().getX(), getLinkerBovenhoek().getY(), breedte, hoogte);
+		}
 	}
 	
 	@Override

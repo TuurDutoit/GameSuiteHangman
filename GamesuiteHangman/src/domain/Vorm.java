@@ -4,11 +4,21 @@ import java.awt.Graphics;
 
 
 public abstract class Vorm  {
+	private boolean zichtbaar = true;
+	
+	public boolean isZichtbaar() {
+		return zichtbaar;
+	}
+	
+	public void setZichtbaar(boolean zichtbaar) {
+		this.zichtbaar = zichtbaar;
+	}
 
 	@Override
 	public boolean equals(Object o) {
 		if(o instanceof Vorm) {
-			return true;
+			Vorm other = (Vorm) o;
+			return getOmhullende().equals(other.getOmhullende());
 		}
 
 		return false;
