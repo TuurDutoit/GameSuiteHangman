@@ -20,20 +20,28 @@ public class HangManUi {
 	
 	public void play() {
 		HintWoord woord = new HintWoord("test");
+		boolean juist = false;
+		char letter = 0;
 		
 		while(!woord.isGeraden()) {
-			String input = JOptionPane.showInputDialog(null, "Raad een letter:\n" + woord, title, JOptionPane.INFORMATION_MESSAGE);
-			char letter = input.charAt(0);
+			String content = "";
 			
-			if(woord.raad(letter)) {
-				JOptionPane.showMessageDialog(null, "Goed geraden!", title, JOptionPane.INFORMATION_MESSAGE);
+			if(letter != 0) {
+				if(juist) {
+					content += letter + " is juist geraden!\n\n";
+				}
+				else {
+					content += letter + " zit niet in het woord (of heb je al eens geprobeerd)...\n\n";
+				}
 			}
-			else {
-				JOptionPane.showMessageDialog(null, "Deze letter zit niet in het woord. Probeer het nog eens.", title, JOptionPane.INFORMATION_MESSAGE);
-			}
+			
+			content += "Raad een letter:\n\n" + woord;
+			String input = JOptionPane.showInputDialog(null, content, title, JOptionPane.INFORMATION_MESSAGE);
+			letter = input.charAt(0);
+			juist = woord.raad(letter);
 		}
 		
-		JOptionPane.showMessageDialog(null, "U heeft het woord geraden!\n>>> " + woord + " <<<", "GEWONNEN!", JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(null, "U heeft het woord geraden!\n\n>>> " + woord + " <<<", "GEWONNEN!", JOptionPane.INFORMATION_MESSAGE);
 	}
 	
 }
