@@ -33,6 +33,7 @@ public class Speler {
 	public boolean equals(Object o) {
 		if(o instanceof Speler) {
 			Speler other = (Speler) o;
+			
 			return other.getNaam().equals(naam) && other.getScore() == score;
 		}
 		

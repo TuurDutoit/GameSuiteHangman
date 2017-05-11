@@ -14,6 +14,7 @@ import domain.Tekening;
 public class PictionaryUi {
 	private static final String[] shapes = {"Cirkel", "Rechthoek", "Lijnstuk", "Driehoek"};
 	private static final String[] actions = {"Vorm maken", "Tekening tonen", "Stoppen"};
+	
 	private Speler speler;
 	private Tekening tekening;
 	

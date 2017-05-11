@@ -10,15 +10,14 @@ import javax.swing.JPanel;
 import domain.Tekening;
 
 public class GameHoofdScherm extends JFrame {
-
 	private static final long serialVersionUID = 1L;
 	
 	private TekenVenster tekenvenster;
 
 	public GameHoofdScherm(String titel, Tekening tekening){
 		super(titel);
-		TekenVenster tekenvenster = new TekenVenster(tekening);
-		setTekenvenster(tekenvenster);
+		
+		setTekenvenster(new TekenVenster(tekening));
 
 		JPanel tekeningPaneel = new JPanel();
 		tekeningPaneel.setBackground(Color.white);

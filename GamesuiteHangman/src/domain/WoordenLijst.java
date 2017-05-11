@@ -20,6 +20,7 @@ public class WoordenLijst {
 		if (woord == null || woord.trim().isEmpty()) {
 			throw new DomainException("Woord is leeg");
 		}
+		
 		this.woordenLijst.add(woord);
 	}
 
@@ -29,8 +30,8 @@ public class WoordenLijst {
 		if (woordenLijst.size() == 0) {
 			return null;
 		}
+		
 		return woordenLijst.get(random);
-
 	}
 
 }

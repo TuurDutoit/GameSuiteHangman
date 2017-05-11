@@ -3,7 +3,6 @@ package domain;
 import java.awt.Graphics;
 
 public class LijnStuk extends Vorm implements Drawable {
-		
 	private Punt startPunt;
 	private Punt eindPunt;
 	
