@@ -2,13 +2,13 @@ package ui;
 
 import javax.swing.JOptionPane;
 
+import domain.HangMan;
 import domain.HintWoord;
 import domain.Speler;
 import domain.WoordenLijst;
 
 public class HangManUi {
 	private Speler speler;
-	private String title;
 	private WoordenLijst lijst;
 
 	public HangManUi(Speler speler, WoordenLijst lijst) {
@@ -17,11 +17,17 @@ public class HangManUi {
 		}
 
 		this.speler = speler;
-		this.title = "HangMan - " + speler.getNaam();
 		this.lijst = lijst;
 	}
-
+	
 	public void play() {
+		HangMan spel = new HangMan(speler, lijst);
+		HangmanPaneel paneel = new HangmanPaneel(spel);
+		HangManHoofdScherm scherm = new HangManHoofdScherm(spel, paneel);
+		scherm.start();
+	}
+
+	public void play2() {
 		HintWoord woord = new HintWoord(lijst.getRandomWoord());
 		TekeningHangMan tekening = new TekeningHangMan();
 		GameHoofdScherm view = new GameHoofdScherm(speler.getNaam(), tekening);
@@ -48,7 +54,7 @@ public class HangManUi {
 			}
 
 			content += "Raad een letter:\n\n" + woord;
-			String input = JOptionPane.showInputDialog(null, content, title, JOptionPane.INFORMATION_MESSAGE);
+			String input = JOptionPane.showInputDialog(null, content, "", JOptionPane.INFORMATION_MESSAGE);
 			letter = input.charAt(0);
 			juist = woord.raad(letter);
 		}

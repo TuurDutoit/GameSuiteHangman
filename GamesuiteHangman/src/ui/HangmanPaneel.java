@@ -13,7 +13,8 @@ import domain.HangMan;
 
 public class HangmanPaneel extends JPanel {
 
-	private static final long serialVersionUID = 1L;	
+	private static final long serialVersionUID = 1L;
+	private static final String[] keuzes = {"Ja", "Nee"};
 	
 	private JTextField letter;	
 	private JLabel woord;
@@ -54,7 +55,7 @@ public class HangmanPaneel extends JPanel {
 					guess = input.charAt(0);
 				}
 				//TODO raad
-
+				spel.raad(guess);
 				woord.setText(getSpel().getHint());
 				letter.setText("");
 				getTekenVenster().teken();
@@ -63,6 +64,13 @@ public class HangmanPaneel extends JPanel {
 				//toon boodschap als gewonnen of verloren en vraag of speler opnieuw wilt spelen
 				//als de speler opnieuw wilt spelen: herzet het spel en het paneel
 				//anders stop (System.exit(0))
+				
+				if(spel.isGameOver()) {
+					gedaan("U heeft verloren...", "VERLOREN");
+				}
+				else if(spel.isGewonnen()) {
+					gedaan("U heeft gewonnen!", "GEWONNEN!");
+				}
 			}
 		}
 
@@ -70,6 +78,19 @@ public class HangmanPaneel extends JPanel {
 		public void keyReleased(KeyEvent arg0) {/* Niet nodig*/}
 		@Override
 		public void keyTyped(KeyEvent arg0) {/* Niet nodig*/}
+	}
+	
+	private void gedaan(String message, String title) {
+		message += "\n\nWilt u opnieuw spelen?";
+		String keuze = (String) JOptionPane.showInputDialog(null, message, title, JOptionPane.INFORMATION_MESSAGE, null, keuzes, null);
+		
+		if(keuze.equals("Ja")) {
+			spel.reset();
+			reset();
+		}
+		else {
+			System.exit(0);
+		}
 	}
 	
 	private void setSpel(HangMan spel){

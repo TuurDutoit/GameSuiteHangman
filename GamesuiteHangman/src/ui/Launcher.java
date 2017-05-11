@@ -7,17 +7,13 @@ import domain.Speler;
 import domain.WoordenLijst;
 
 public class Launcher {
-	private static final String[] games = {"Pictionary", "HangMan"};
-	
-	private static final String[] spelen = {"Hangman", "Pictionary"};
+	private static final String[] games = {"HangMan", "Pictionary"};
 	
 	public static void main(String[] args) {
 		try {
 			String naam = JOptionPane.showInputDialog("Welkom!\nHoe heet je?");
 			Speler speler = new Speler(naam);
 			JOptionPane.showMessageDialog(null, speler.toString(), speler.getNaam(), JOptionPane.INFORMATION_MESSAGE);
-			
-			WoordenLijst woordenLijst = new WoordenLezer("hangman.txt").lees();
 			
 			String game = (String) JOptionPane.showInputDialog(null, "Dag " + naam + ", welk spel wilt u spelen?", "Keuze spel", JOptionPane.INFORMATION_MESSAGE, null, games, null);
 			
@@ -26,6 +22,7 @@ public class Launcher {
 				ui.showMenu();
 			}
 			else {
+				WoordenLijst woordenLijst = new WoordenLezer("hangman.txt").lees();
 				HangManUi ui = new HangManUi(speler, woordenLijst);
 				ui.play();
 			}
