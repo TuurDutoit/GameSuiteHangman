@@ -1,7 +1,6 @@
 package domain;
 
 public class Omhullende {
-	
 	private int breedte;
 	private int hoogte;
 	private Punt linkerBovenhoek;
@@ -52,17 +51,15 @@ public class Omhullende {
 	
 	@Override
 	public boolean equals(Object o){
-		boolean res = false;
-		
 		if(o instanceof Omhullende){
 			Omhullende other = (Omhullende) o;
 			
 			if(linkerBovenhoek.equals(other.getLinkerBovenhoek()) && other.getBreedte() == breedte && other.getHoogte() == hoogte){
-				res = true;
+				return true;
 			}
 		}
 		
-		return res;
+		return false;
 	}
 	
 	@Override

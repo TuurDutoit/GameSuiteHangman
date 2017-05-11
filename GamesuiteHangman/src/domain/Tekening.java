@@ -8,6 +8,7 @@ public class Tekening implements Drawable {
 	private static final int MIN_Y = 0;
 	private static final int MAX_X = 399;
 	private static final int MAX_Y = 399;
+	
 	private String naam;
 	private ArrayList<Vorm> vormen;
 	

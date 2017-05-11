@@ -16,7 +16,6 @@ public class Rechthoek extends Vorm implements Drawable {
 	
 	public Punt getLinkerBovenhoek() {
 		return this.linkerBovenhoek;
-		
 	}
 	
 	public void setLinkerBovenhoek(Punt hoek) {
@@ -63,20 +62,16 @@ public class Rechthoek extends Vorm implements Drawable {
 	
 	@Override
 	public boolean equals(Object object) {
-		boolean resultaat = false;
-		
 		if(object instanceof Rechthoek) {
-			Rechthoek gelijk = (Rechthoek) object;
+			Rechthoek other = (Rechthoek) object;
+			boolean b = breedte == other.getBreedte();
+			boolean h = hoogte == other.getHoogte();
+			boolean punt = linkerBovenhoek.equals(other.getLinkerBovenhoek());
 			
-			if(this.getBreedte() == gelijk.getBreedte() && this.getHoogte()==gelijk.getHoogte() &&
-					this.getLinkerBovenhoek().equals(gelijk.getLinkerBovenhoek()))
-			{
-				resultaat = true;
-			}
-			
+			return b && h && punt;
 		}
 		
-		return resultaat;
+		return false;
 	}
 	
 	@Override

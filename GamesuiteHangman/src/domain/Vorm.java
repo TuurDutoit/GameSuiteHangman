@@ -1,7 +1,5 @@
 package domain;
 
-import java.awt.Graphics;
-
 
 public abstract class Vorm  {
 	private boolean zichtbaar = true;
@@ -18,6 +16,7 @@ public abstract class Vorm  {
 	public boolean equals(Object o) {
 		if(o instanceof Vorm) {
 			Vorm other = (Vorm) o;
+			
 			return getOmhullende().equals(other.getOmhullende());
 		}
 

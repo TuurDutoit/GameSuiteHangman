@@ -18,16 +18,14 @@ public class Punt {
 	
 	@Override
 	public boolean equals(Object o){
-		boolean res = false;
-		
 		if(o instanceof Punt){
 			Punt newO = (Punt) o;
 			if(newO.getX() == this.x && newO.getY() == this.y){
-				res = true;
+				return true;
 			}
 		}
 		
-		return res;
+		return false;
 	}
 	
 	@Override

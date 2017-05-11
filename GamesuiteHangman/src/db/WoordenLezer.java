@@ -29,9 +29,11 @@ public class WoordenLezer {
 				lijnScanner.close();
 			}
 			return lijst;
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			throw new DbException(e.getMessage(), e);
-		} finally {
+		}
+		finally {
 			if (scanner != null) {
 				scanner.close();
 			}

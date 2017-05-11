@@ -3,20 +3,31 @@ package domain;
 import java.awt.Graphics;
 
 public class Driehoek extends Vorm implements Drawable {
-
 	private Punt hoekpunt1, hoekpunt2, hoekpunt3;
 
 	public Driehoek(Punt hoekPunt1, Punt hoekPunt2, Punt hoekPunt3) {
 		setHoekPunten(hoekPunt1, hoekPunt2, hoekPunt3);
+	}
+	
+	public static int min(int a, int b, int c) {
+		return Math.min(Math.min(a, b), Math.min(b, c));
+	}
+	
+	public static int max(int a, int b, int c) {
+		return Math.max(Math.max(a,  b), Math.max(b, c));
 	}
 
 	private void setHoekPunten(Punt punt1, Punt punt2, Punt punt3) {
 		if (punt1 == null || punt2 == null || punt3 == null) {
 			throw new DomainException("Hoekpunten mogen niet null zijn");
 		}
-		else if ((punt2.getX() - punt1.getX()) * (punt3.getY() - punt1.getY()) == (punt3.getX() - punt1.getX())
-				* (punt2.getY() - punt1.getY())) {
-			throw new DomainException("Hoekpunten mogen niet op 1 lijn liggen");
+		else {
+			int left = (punt2.getX() - punt1.getX()) * (punt3.getY() - punt1.getY());
+			int right = (punt3.getX() - punt1.getX()) * (punt2.getY() - punt1.getY());
+			
+			if(left == right) {
+				throw new DomainException("Hoekpunten mogen niet op 1 lijn liggen");
+			}
 		}
 		
 		this.hoekpunt1 = punt1;
@@ -37,17 +48,14 @@ public class Driehoek extends Vorm implements Drawable {
 	}
 
 	public Omhullende getOmhullende(){
-
-		int yKlein = Math.min(Math.min(hoekpunt1.getY(), hoekpunt2.getY()), Math.min(hoekpunt2.getY(), hoekpunt3.getY()));
-		int yGroot = Math.max(Math.max(hoekpunt1.getY(), hoekpunt2.getY()), Math.max(hoekpunt2.getY(), hoekpunt3.getY()));
-		int xKlein = Math.min(Math.min(hoekpunt1.getX(), hoekpunt2.getX()), Math.min(hoekpunt2.getX(), hoekpunt3.getX()));
-		int xGroot = Math.max(Math.max(hoekpunt1.getX(), hoekpunt2.getX()), Math.max(hoekpunt2.getX(), hoekpunt3.getX()));
-		Punt linksBoven = new Punt(xKlein,yKlein);
-		 
+		int yKlein = min(hoekpunt1.getY(), hoekpunt2.getY(), hoekpunt3.getY());
+		int yGroot = max(hoekpunt1.getY(), hoekpunt2.getY(), hoekpunt3.getY());
+		int xKlein = min(hoekpunt1.getX(), hoekpunt2.getX(), hoekpunt3.getX());
+		int xGroot = max(hoekpunt1.getX(), hoekpunt2.getX(), hoekpunt3.getX());
 		int breedte = xGroot - xKlein;
 		int hoogte = yGroot - yKlein;
 		
-		return new Omhullende(linksBoven, breedte, hoogte);
+		return new Omhullende(new Punt(xKlein, yKlein), breedte, hoogte);
 	}
 	
 	public void teken(Graphics g) {
@@ -59,23 +67,22 @@ public class Driehoek extends Vorm implements Drawable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!(obj instanceof Driehoek))
-			return false;
-
-		Driehoek driehoek = (Driehoek) obj;
+	public boolean equals(Object o) {
+		if(o instanceof Driehoek) {
+			Driehoek driehoek = (Driehoek) o;
+			
+			return (hoekpunt1.equals(driehoek.getHoekPunt1())
+					|| hoekpunt1.equals(driehoek.getHoekPunt2())
+					|| hoekpunt1.equals(driehoek.getHoekPunt3())) &&
+				   (hoekpunt2.equals(driehoek.getHoekPunt1())
+				    || hoekpunt2.equals(driehoek.getHoekPunt2())
+				    || hoekpunt2.equals(driehoek.getHoekPunt3())) &&
+				   (hoekpunt3.equals(driehoek.getHoekPunt1())
+					|| hoekpunt3.equals(driehoek.getHoekPunt2())
+					|| hoekpunt3.equals(driehoek.getHoekPunt3()));
+		}
 		
-		return (hoekpunt1.equals(driehoek.getHoekPunt1())
-				|| hoekpunt1.equals(driehoek.getHoekPunt2())
-				|| hoekpunt1.equals(driehoek.getHoekPunt3())) &&
-			   (hoekpunt2.equals(driehoek.getHoekPunt1())
-			    || hoekpunt2.equals(driehoek.getHoekPunt2())
-			    || hoekpunt2.equals(driehoek.getHoekPunt3())) &&
-			   (hoekpunt3.equals(driehoek.getHoekPunt1())
-				|| hoekpunt3.equals(driehoek.getHoekPunt2())
-				|| hoekpunt3.equals(driehoek.getHoekPunt3()));
+		return false;
 	}
 
 	@Override
