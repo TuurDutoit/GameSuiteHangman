@@ -2,7 +2,9 @@ package ui;
 
 import javax.swing.JOptionPane;
 
+import db.WoordenLezer;
 import domain.Speler;
+import domain.WoordenLijst;
 
 public class Launcher {
 	private static final String[] games = {"Pictionary", "HangMan"};
@@ -15,6 +17,8 @@ public class Launcher {
 			Speler speler = new Speler(naam);
 			JOptionPane.showMessageDialog(null, speler.toString(), speler.getNaam(), JOptionPane.INFORMATION_MESSAGE);
 			
+			WoordenLijst woordenLijst = new WoordenLezer("hangman.txt").lees();
+			
 			String game = (String) JOptionPane.showInputDialog(null, "Dag " + naam + ", welk spel wilt u spelen?", "Keuze spel", JOptionPane.INFORMATION_MESSAGE, null, games, null);
 			
 			if(game.equals("Pictionary")) {
@@ -22,7 +26,7 @@ public class Launcher {
 				ui.showMenu();
 			}
 			else {
-				HangManUi ui = new HangManUi(speler);
+				HangManUi ui = new HangManUi(speler, woordenLijst);
 				ui.play();
 			}
 		}
