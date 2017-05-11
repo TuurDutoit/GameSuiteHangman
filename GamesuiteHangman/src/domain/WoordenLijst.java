@@ -24,7 +24,7 @@ public class WoordenLijst {
 	}
 
 	public String getRandomWoord() {
-		int random = (int) (Math.random() * (this.woordenLijst.size() - 1));
+		int random = (int) (Math.random() * (this.woordenLijst.size()));
 
 		if (woordenLijst.size() == 0) {
 			return null;
